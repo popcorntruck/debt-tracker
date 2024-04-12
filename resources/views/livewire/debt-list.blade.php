@@ -4,7 +4,18 @@
             Current Debts
         </h3>
 
-        <x-input type="search" aria-label="Search" placeholder="Search" class="py-0 px-2" wire:model.live="search" />
+        <div class="flex text-gray-600 dark:text-gray-400 gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-4 h-4">
+
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+
+            <x-input type="search" aria-label="Search" placeholder="Search" class="py-0 px-2"
+                wire:model.live="search" />
+
+        </div>
     </div>
     <div class="flex flex-col mt-2 space-y-4">
         @forelse ($debts as $debt)
