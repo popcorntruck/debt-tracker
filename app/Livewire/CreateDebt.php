@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Livewire\Forms\CreateDebtForm;
+use App\Models\Debt;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+
+class CreateDebt extends Component
+{
+    #[Validate('required|min:1|max:40')]
+    public string $whosInDebt = '';
+
+    #[Validate('required|numeric|min:1')]
+    public float $amount = 0;
+
+    #[Validate('max:500')]
+    public string $comments = '';
+
+    public function render()
+    {
+        return view('livewire.create-debt');
+    }
+
+    public function create()
+    {
+        $this->validate();
+        $userId = Auth::id();
+
+        Debt::create(
+            [
+                'whos_in_debt' => $this->whosInDebt,
+                'amount' => $this->amount,
+                'comment' => $this->comments,
+                'user_id' => $userId
+            ]
+        );
+
+        session()->flash('flash.banner', 'Debt added!');
+        session()->flash('flash.bannerStyle', 'success');
+
+        $this->redirect('debt');
+    }
+}

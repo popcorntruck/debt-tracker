@@ -1,0 +1,36 @@
+# fly.toml app configuration file generated for debt-tracker on 2024-04-10T23:05:49-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'debt-tracker'
+primary_region = 'lax'
+console_command = 'php /var/www/html/artisan tinker'
+
+[build]
+  [build.args]
+    NODE_VERSION = '18'
+    PHP_VERSION = '8.3'
+
+[env]
+  APP_NAME = 'DebtTracker'
+  DB_CONNECTION = 'libsql'
+  APP_ENV = 'production'
+  LOG_CHANNEL = 'stderr'
+  LOG_LEVEL = 'info'
+  LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DRIVER = 'database'
+  SESSION_SECURE_COOKIE = 'true'
+  SESSION_LIFETIME = '10080'
+  APP_URL = 'https://debt-tracker.fly.dev'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
