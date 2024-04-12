@@ -2,14 +2,16 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Forms\CreateDebtForm;
 use App\Models\Debt;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CreateDebt extends Component
 {
+    use InteractsWithBanner;
+
     #[Validate('required|min:1|max:40')]
     public string $whosInDebt = '';
 
@@ -38,9 +40,8 @@ class CreateDebt extends Component
             ]
         );
 
-        session()->flash('flash.banner', 'Debt added!');
-        session()->flash('flash.bannerStyle', 'success');
-
-        $this->redirect('debt');
+        $this->banner("Debt added!");
+        $this->dispatch('debts-updated');
+        $this->reset();
     }
 }

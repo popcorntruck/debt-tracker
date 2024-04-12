@@ -4,7 +4,7 @@
         Add Debt
     </h2>
 
-    <form wire:submit="create" class="p-4 space-y-2">
+    <form wire:submit.prevent="create" class="p-4 space-y-2">
         <div class="flex gap-2">
             <div class="flex-1">
                 <x-label for="whosInDebt" value="Who's in debt?" />

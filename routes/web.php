@@ -7,6 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("/phpinfo", fn () => phpinfo())->name("phpinfo");
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
