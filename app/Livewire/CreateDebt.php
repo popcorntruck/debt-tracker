@@ -15,7 +15,7 @@ class CreateDebt extends Component
     #[Validate('required|min:1|max:40')]
     public string $whosInDebt = '';
 
-    #[Validate('required|numeric|min:1')]
+    #[Validate('required|numeric|min:.1')]
     public float $amount = 0;
 
     #[Validate('max:500')]

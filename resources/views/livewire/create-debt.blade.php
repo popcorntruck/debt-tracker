@@ -14,7 +14,8 @@
 
             <div class="">
                 <x-label for="amount" value="Amount" />
-                <x-input type="number" placeholder="$" name="amount" wire:model="amount" class="w-full" />
+                <x-input type="number" step="any" placeholder="$" name="amount" wire:model="amount"
+                    class="w-full" />
                 <x-input-error for="amount" />
             </div>
         </div>

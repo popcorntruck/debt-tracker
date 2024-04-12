@@ -11,13 +11,9 @@ class TotalDebt extends Component
 {
     public function render()
     {
-        $userId = Auth::id();
-
-        $debts = Debt::where('user_id', $userId)
+        $totalDebt = Debt::where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
-            ->get();
-
-        $totalDebt = $debts->sum(fn ($debt) => $debt->amount);
+            ->sum('amount');
 
         return view('livewire.total-debt', [
             'totalDebt' => $totalDebt
