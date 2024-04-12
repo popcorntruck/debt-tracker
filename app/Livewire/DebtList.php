@@ -31,7 +31,8 @@ class DebtList extends Component
         $debts = $query->get();
 
         return view('livewire.debt-list', [
-            'debts' => $debts
+            'debts' => $debts,
+            'search' => $this->search
         ]);
     }
 

@@ -4,10 +4,10 @@
             Current Debts
         </h3>
 
-        <x-input type="text" aria-label="Search" placeholder="Search" class="py-0 px-2" wire:model.live="search" />
+        <x-input type="search" aria-label="Search" placeholder="Search" class="py-0 px-2" wire:model.live="search" />
     </div>
     <div class="flex flex-col mt-2 space-y-4">
-        @foreach ($debts as $debt)
+        @forelse ($debts as $debt)
             <div wire:key="{{ $debt->id }}"
                 class="bg-white dark:bg-gray-800 dark:text-gray-200 overflow-hidden shadow-xl sm:rounded-lg p-4">
                 <div class="flex items-center gap-2 flex-wrap">
@@ -47,6 +47,14 @@
                     </x-danger-button>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <span class="mx-auto mt-4 text-gray-600 dark:text-gray-400 p-4 rounded-md">
+                @if (!empty($search))
+                    No matching entries
+                @else
+                    No one is in debt right now! 💸
+                @endif
+            </span>
+        @endforelse
     </div>
 </section>
