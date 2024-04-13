@@ -7,13 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/phpinfo", fn () => phpinfo())->name("phpinfo");
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
     Route::get('/debt', [DebtController::class, "show"])->name('debt');
-    Route::post('/debt/{debt}/delete', [DebtController::class, "delete"])->name("delete-debt");
 });
