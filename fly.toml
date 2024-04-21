@@ -12,6 +12,9 @@ console_command = 'php /var/www/html/artisan tinker'
     NODE_VERSION = '18'
     PHP_VERSION = '8.3'
 
+[deploy]
+  release_command = "php /var/www/html/artisan migrate --force"
+
 [env]
   APP_NAME = 'DebtTracker'
   DB_CONNECTION = 'libsql'
