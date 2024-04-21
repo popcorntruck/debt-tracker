@@ -40,7 +40,7 @@
                 @endphp
 
                 <span class="text-gray-600 dark:text-gray-400 border-gray-100 dark:border-gray-700">
-                    added on {{ $formatter->format('d/m/Y') }} at {{ $formatter->format('h:i a') }}
+                    added on {{ $formatter->format('m/d/Y') }} at {{ $formatter->format('h:i a') }}
                 </span>
 
                 @if ($debt->comment)
